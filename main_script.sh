@@ -1,46 +1,25 @@
 #!/bin/bash
 # Adam Harrington x13113305
 
+# =================== Import functions =================
+
+# load functions script
+. main_script
+
 # =================== Initial config ===================
 
 # ---------- Root?
-function check_root {
-# check root
-if [ "$(id -u)" != "0" ]; then
-    echo Sorry, you are not root.
-    exit 1
-fi
-}
+check_root 
 # ---------- Build sandbox
-function make_sandbox {
-cd ~/tmp;
-FOLDER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1);
-mkdir $FOLDER
-cd $FOLDER
-}
-# ---------- Monitor scripts
-function new_monitor {
-ERRORCOUNT=0
-}
-function add_error {
-# Call with string, add to report
-# Create error-report.txt if not exist
-let "ERRORCOUNT += 1" 
-echo "Error number $ERRORCOUNT     $1"  >> ~/tmp/$FOLDER/error-report.txt
-}
-# ---------- Download from git
-function get_from_git {
-# call with a git address
-git clone $1
-}
-# ---------- Package dummy files as webpackage_pre_build.tgz
-function pack_and_move {
-tar –czvf $2/webpackage_pre_$2.tgz $1
-}
+make_sandbox 
+# ---------- Monitor
+new_monitor
 # ---------- Make directories
-function make_directories {
-mkdir webpackage build intergrate test deploy
-}
+make_directories
+# ---------- Download from git
+get_from_git "https://github.com/adamdharrington/Deployment_BITD.git"
+# ---------- Package dummy files as webpackage_pre_build.tgz
+pack_and_move "build" "Deployment_BITD"
 # ---------- Move to Build directory
 
 # ================== Build =============================
@@ -82,6 +61,4 @@ mkdir webpackage build intergrate test deploy
 # ---------- Email report
 
 # ---------- Cleanup
-function remove_sandbox {
-rm -r $FOLDER
-}
+echo "complete"
