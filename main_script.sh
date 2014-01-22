@@ -9,17 +9,17 @@
 # =================== Initial config ===================
 
 # ---------- Root?
-check_root 
+check_root()
 # ---------- Build sandbox
-make_sandbox 
+make_sandbox()
 # ---------- Monitor
-new_monitor
+new_monitor()
 # ---------- Make directories
-make_directories
+make_directories()
 # ---------- Download from git
-get_from_git "https://github.com/adamdharrington/Deployment_BITD.git"
+get_from_git() "https://github.com/adamdharrington/Deployment_BITD.git"
 # ---------- Package dummy files as webpackage_pre_build.tgz
-pack_and_move "build" "Deployment_BITD"
+pack_and_move() "build" "Deployment_BITD"
 # ---------- Move to Build directory
 
 # ================== Build =============================
