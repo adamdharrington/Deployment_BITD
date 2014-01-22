@@ -35,7 +35,7 @@ git clone $1
 }
 # ---------- Package dummy files as webpackage_pre_build.tgz
 function pack_and_move {
-tar czvf $2/webpackage_pre_$2.tgz $1
+tar –czvf $2/webpackage_pre_$2.tgz $1
 }
 # ---------- Make directories
 function make_directories {
