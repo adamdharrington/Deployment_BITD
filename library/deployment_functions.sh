@@ -26,12 +26,10 @@ function dep_update {
 }
 function dep_check_pw {
 	tables=`mysql -root -p"$1" -e"show databases;" | wc -l`
-	if [$tables -eq 0]; then
+	if [[ $tables -eq 0 ]]; then
 		echo "Incorrect Database password provided"
 		dep_stop_services
 		dep_reset_pw "$1"
-	else
-		dep_stop_services
 	fi
 }
 function dep_reset_pw {
@@ -47,7 +45,6 @@ function dep_stop_services {
 	# Stop services
 	service apache2 stop
 	service mysql stop
-	sudo killall mysqld
 }
 function dep_clean {
 	# Remove apache2 and mysql
@@ -64,7 +61,8 @@ function dep_install_all {
 	apt-get install -q -y -f mysql-server mysql-client
 }
 function dep_start_services {
-	sudo service mysql apache2 restart
+	service mysql start
+	service apache2 start
 }
 function dep_build_database {
 	# Create a new database and table

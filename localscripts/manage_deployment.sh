@@ -13,7 +13,7 @@ DB_USER="$2"
 DB_PASS="$3"
 DB_NAME="dbtest"
 DB_PORT="3306"
-DB_HOST="localhost"
+DB_HOST="127.0.0.1"
 MS="smtp.o2.ie"
 ADMIN_EMAIL="adamdharrington@gmail.com"
 
@@ -162,9 +162,11 @@ unpack_webpackage "deploy"
 #bash library/dep_create_db.sh $DB_USER $DB_PASS $DB_NAME
 dep_speak
 dep_update
-dep_check_pw $DB_NAME
+dep_stop_services
 dep_clean
 dep_install_all $DB_PASS
+dep_stop_services
+dep_check_pw $DB_PASS
 dep_start_services
 dep_build_database
 dep_content

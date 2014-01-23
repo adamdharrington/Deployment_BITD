@@ -1,8 +1,8 @@
 #!/bin/bash
 # Adam Harrington - x13113305 - adamdharrington@gmail.com
 
-$ADMIN_EMAIL="replace_email"
-$SMTP_MS="replace_smtp_ms"
+ADMIN_EMAIL="replace_email"
+SMTP_MS="replace_smtp_ms"
 
 echo " "
 echo "======================================================"
@@ -176,7 +176,7 @@ fi
 
 if  [ $ERRORCOUNT -gt 0 ]
 then
-	echo "There is a problem with Apache or Mysql. Error Count was $ERRORCOUNT" | sudo perl /etc/cron.d/dep_error_mailer.pl $ADMIN_EMAIL $SMTP_MS
+	echo "There is a problem with Apache or Mysql. Error Count was $ERRORCOUNT" | sudo perl /etc/cron.d/dep_error_mailer.pl "$ADMIN_EMAIL" "$SMTP_MS"
 fi
 echo Total errors: $ERRORCOUNT
 echo "======================================================"
