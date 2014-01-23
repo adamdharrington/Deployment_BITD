@@ -1,4 +1,5 @@
 #!/bin/bash
+# Adam Harrington - x13113305 - adamdharrington@gmail.com
 
 $ADMIN_EMAIL="replace_email"
 $SMTP_MS="replace_smtp_ms"
@@ -103,7 +104,7 @@ function getCPU {
 function checkPermissions {
 	stat -c "%a" $1
 	MODE=`stat -c "%a" $1`
-	if [ $MODE -gt 754 ]; then
+	if [[ $MODE -gt 754 ]]; then
 		return 1
 	else
 		return 0
