@@ -33,9 +33,11 @@ function dep_check_pw {
 	fi
 }
 function dep_reset_pw {
+	pass="$1"
 	echo "Attempting override"
-	cat <<FINISH | sudo mysqld --skip-grant-tables &
-update mysql.user set Password=PASSWORD('$1');
+	sudo mysqld --skip-grant-tables &
+	cat <<FINISH | sudo mysql -uroot
+update mysql.user set Password=PASSWORD('$pass');
 flush privileges;
 exit;
 FINISH
