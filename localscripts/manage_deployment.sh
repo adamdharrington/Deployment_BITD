@@ -1,6 +1,12 @@
 #!/usr/bin/bash
 # Adam Harrington - x13113305 - adamdharrington@gmail.com
 
+# ====================================================================
+#
+#                                                Environment variables
+#
+# ====================================================================
+
 echo running manage_deployment.sh
 ROOT_PASS="$1"
 DB_USER="$2"
@@ -89,7 +95,7 @@ function unpack_webpackage {
 	fi
 }
 function remove_sandbox {
-#---------- remove sandbox
+	# remove sandbox
 	rm -r /tmp/$SANDBOX
 	if [[ `ls /tmp | grep "$SANDBOX" | wc -l` -eq 0 ]]; then
 		echo sandbox removed
@@ -99,16 +105,6 @@ function remove_sandbox {
 }
 
 
-# ====================================================================
-#
-#                                                   Set up environment
-#
-# ====================================================================
-
-# =================  initialize
-check_root
-make_sandbox
-get_content
 
 # ====================================================================
 #
@@ -116,6 +112,9 @@ get_content
 #
 # ====================================================================
 
+check_root
+make_sandbox
+get_content
 cd /tmp/$SANDBOX/build
 . /tmp/$SANDBOX/build/library/build_functions.sh
 build_speak
@@ -149,6 +148,7 @@ pack_and_move "test"
 unpack_webpackage "test"
 . /tmp/$SANDBOX/test/library/test_functions.sh
 test_speak
+test_integration
 
 # ====================================================================
 #

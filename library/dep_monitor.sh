@@ -4,7 +4,7 @@ $ADMIN_EMAIL="replace_email"
 $SMTP_MS="replace_smtp_ms"
 
 echo " "
-echo ------------------------------------------------------
+echo "======================================================"
 
 # Level 1 functions <---------------------------------------
 
@@ -178,5 +178,5 @@ then
 	echo "There is a problem with Apache or Mysql. Error Count was $ERRORCOUNT" | sudo perl /etc/cron.d/dep_error_mailer.pl $ADMIN_EMAIL $SMTP_MS
 fi
 echo Total errors: $ERRORCOUNT
-echo --------------------------------------------------------------------
+echo "======================================================"
 echo " "
