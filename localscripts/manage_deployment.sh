@@ -1,10 +1,18 @@
 #!/usr/bin/bash
 # Adam Harrington - x13113305 - adamdharrington@gmail.com
+
 echo running manage_deployment.sh
 ROOT_PASS="$1"
 DB_USER="$2"
 DB_PASS="$3"
+DB_NAME="dbtest"
+DB_PORT="3306"
+DB_HOST="127.0.0.1"
+MS="smtp.o2.ie"
+ADMIN_EMAIL="adamdharrington@gmail.com"
+
 ERRORS=0
+
 # ====================================================================
 #
 #                             Basic functions for managing environment
@@ -122,6 +130,14 @@ pack_and_move "integrate"
 unpack_webpackage "integrate"
 . /tmp/$SANDBOX/integrate/library/integration_functions.sh
 int_speak
+int_configure username $DB_USER webpackage/cgi-bin/accept_form.pl
+int_configure password $DB_PASS webpackage/cgi-bin/accept_form.pl
+int_configure name $DB_NAME webpackage/cgi-bin/accept_form.pl
+int_configure port $DB_PORT webpackage/cgi-bin/accept_form.pl
+int_configure host $DB_HOST webpackage/cgi-bin/accept_form.pl
+
+int_configure email $ADMIN_EMAIL library/dep_monitor.sh
+int_configure smtp_ms $MS library/dep_monitor.sh
 
 # ====================================================================
 #
@@ -143,7 +159,9 @@ test_speak
 pack_and_move "deploy"
 unpack_webpackage "deploy"
 . /tmp/$SANDBOX/deploy/library/deployment_functions.sh
-dep_speak
+bash library/dep_create_db.sh $DB_USER $DB_PASS $DB_NAME
+dep_content
+dep_cron_add 
 
 # ====================================================================
 #

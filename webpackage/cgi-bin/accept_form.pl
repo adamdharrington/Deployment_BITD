@@ -1,5 +1,11 @@
 #!/usr/bin/perl
 
+DB_username="replace_username"
+DB_password="replace_password"
+DB_name="replace_name"
+DB_host="replace_host"
+DB_port="replace_port"
+
 use CGI qw(:standard);
 use CGI::Carp qw(fatalsToBrowser);
 use DBI;
@@ -21,18 +27,16 @@ sub insertDB {
 my $name = shift;
 my $address =shift;
 
-my $dbhost='127.0.0.1'; my $dbport=3306;
-my $dsn="DBI:mysql:dbtest;host=$dbhost;port=$dbport";
-$dbh = DBI->connect($dsn, 'dbtestuser', 'dbpassword'
+my $dsn="DBI:mysql:$DB_name;host=$DB_host;port=$DB_port";
+$dbh = DBI->connect($dsn, $DB_username, $DB_password
                 ) || die "Could not connect to database: $DBI::errstr";
 $sth = $dbh->prepare("insert into custdetails(name,address) values(?,?)");
 $sth->execute($name,$address);
 }
 
 sub showDB {
-my $dbhost='127.0.0.1'; my $dbport=3306;
-my $dsn="DBI:mysql:dbtest;host=$dbhost;port=$dbport";
-$dbh = DBI->connect($dsn, 'dbtestuser', 'dbpassword'
+my $dsn="DBI:mysql:$DB_name;host=$DB_host;port=$DB_port";
+$dbh = DBI->connect($dsn, $DB_username, $DB_password
                 ) || die "Could not connect to database: $DBI::errstr";
 $sth = $dbh->prepare("select * from custdetails");
 $sth->execute();
