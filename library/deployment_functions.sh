@@ -8,7 +8,7 @@ function dep_content {
 	# Assumes relative directory = deploy/
 	cp webpackage/www/* /var/www/
 	cp webpackage/cgi-bin/* /usr/lib/cgi-bin/
-	chmod a+x /usr/lib/cgi-bin/*
+	chmod 755 /usr/lib/cgi-bin/*
 }
 
 function dep_cron_add {

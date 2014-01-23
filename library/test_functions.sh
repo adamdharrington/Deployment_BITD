@@ -6,10 +6,9 @@ function test_speak {
 }
 
 function test_integration {
-	count=`grep -inr "replace_" webpackage/. | wc -l`
-	if [[$count -gt 0]]; then
+	REPLACES=$(grep -inr "replace_" webpackage/. | wc -l)
+	if [ $REPLACES -gt 0 ]; then
 		echo "Integration failed"
-		ERRORS=$((ERRORS+1))
 		exit 1
 	fi
 }

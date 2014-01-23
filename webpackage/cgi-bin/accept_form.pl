@@ -1,10 +1,10 @@
 #!/usr/bin/perl
 
-DB_username="replace_username"
-DB_password="replace_password"
-DB_name="replace_name"
-DB_host="replace_host"
-DB_port="replace_port"
+my $DB_username="replace_username";
+my $DB_password="replace_password";
+my $DB_name="replace_name";
+my $DB_host="replace_host";
+my $DB_port="replace_port";
 
 use CGI qw(:standard);
 use CGI::Carp qw(fatalsToBrowser);
