@@ -30,7 +30,7 @@ echo "**********************"
 echo "Beginning remote deployment"
 # Use SSH to execute deployment management 
 # script on remote machine
-echo "$remote_password" | ssh -t $remote_address -l$remote_username "sudo -S bash /tmp/manage_deployment.sh '$remote_password' '$DB_user' '$DB_password'"
+echo "$remote_password" | ssh -t $remote_address -l$remote_username "sudo -S bash /tmp/manage_deployment.sh '$remote_password' '$DB_password'"
 echo ""
 echo "**********************"
 echo "Successful deployment"
