@@ -2,21 +2,23 @@
 # Adam Harrington - x13113305 - adamdharrington@gmail.com
 
 echo "* Please enter the following remote environment variables: "
+
 # get remote ip address from user input
 echo "Address: "
 read remote_address
+
 # get remote username for $remote_address
 echo "Username for $remote_address: "
 read remote_username
+
 # get remote username for $remote_address
 echo "Password for $remote_username for $remote_address: "
 read -s remote_password
-# get database username
-echo "Database Username: "
-read DB_user
+
 # get database password
 echo "Database Password: "
 read -s DB_password
+
 echo ""
 echo "**********************"
 echo "Signing into $remote_address as $remote_username"

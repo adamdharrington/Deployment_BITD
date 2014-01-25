@@ -9,8 +9,8 @@
 
 echo running manage_deployment.sh
 ROOT_PASS="$1"
-DB_USER="$2"
-DB_PASS="$3"
+DB_PASS="$2"
+DB_USER="root"
 DB_NAME="dbtest"
 DB_PORT="3306"
 DB_HOST="127.0.0.1"

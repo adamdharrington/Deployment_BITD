@@ -1,5 +1,6 @@
 #!/bin/bash
 # Adam Harrington - x13113305 - adamdharrington@gmail.com
+
 function dep_speak {
 	echo "---------- Deployment --"
 }
@@ -19,13 +20,14 @@ function dep_cron_add {
 	# Adds cronjob to root user
 	CRONLINE='*/1 * * * * bash /etc/cron.d/dep_monitor.sh >> /tmp/logs/system.log'
 	(sudo crontab -l; echo "$CRONLINE" ) | sudo crontab -
+	
 }
 function dep_update {
 	# apt-get update
 	apt-get update -qq
 }
 function dep_check_pw {
-	tables=`mysql -root -p"$1" -e"show databases;" | wc -l`
+	tables=`mysql -uroot -p"$1" -e"show databases;" | wc -l`
 	if [[ $tables -eq 0 ]]; then
 		echo "Incorrect Database password provided"
 		dep_stop_services

@@ -1,5 +1,6 @@
 #!/usr/bin/perl
-# fslyne 2013
+# Adam Harrington - x13113305 - adamdharrington@gmail.com
+
 use Net::SMTP;
 
 my $subj="Mailer message - ".convdatetimenow();
